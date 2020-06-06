@@ -7,4 +7,4 @@ Uses the following:
 
 Users can download and run offline.
 
-# [DEMO](http://www.dennismarksbury.com/bingo/index.html)
+# [DEMO](http://shanaboobingo.com)
