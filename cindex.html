@@ -7,7 +7,7 @@
 
 <script>
 if(typeof(EventSource) !== "undefined") {
-  var source = new EventSource("/Users/ramadevi/Downloads/bingo-master/app/js/board.js");
+  var source = new EventSource("app/js/board.js");
   source.onmessage = function(event) {
     document.getElementById("result").innerHTML += event.data + "<br>";
   };
