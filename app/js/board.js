@@ -94,10 +94,22 @@ function cellClick(e) {
     var th = e.target.parentNode.parentNode.childNodes[0].innerText;
     var bingoNumber = th + e.target.innerText;
     select(bingoNumber);
-
     return;
 }
+
+function callApi(bingoNumber){
+    var request = new XMLHttpRequest();
+    // Open a new connection, using the GET request on the URL endpoint
+    //request.open('POST', 'http://localhost:8080/spring-crm-rest/api/add/'+bingoNumber, true)
+    request.open('POST', 'http://18.224.96.53:8080/spring-crm-rest/api/add/'+bingoNumber, true)
+    //18.224.96.53:8080
+    // Send request
+    request.send();
+}
 function select(bingoNumber) {
+    // new changes step1
+    //localStorage.setItem(bingoNumber, bingoNumber);
+    
     var $cell = $('.' + bingoNumber);
     if ($cell.hasClass('selected')) {
         if (confirm('Uncheck this number?')) {
@@ -108,7 +120,7 @@ function select(bingoNumber) {
                 $('.currentValue').text(last);
                 current = last;
             }
-
+            //localStorage.setItem('current', current);
             var i = numberHistory.indexOf(bingoNumber);
             if (i >= 0) {
                 numberHistory.splice(i, 1);
@@ -131,14 +143,18 @@ function select(bingoNumber) {
 
     if (current !== null) {
         addToHistory(current);
+        
     }
 
     current = bingoNumber;
+    //localStorage.setItem('current', current);
     $('.currentValue').text(current);
     _renderHistory();
+    callApi(bingoNumber);
 }
 function addToHistory(item) {
     numberHistory.push(item);
+    //localStorage.setItem('numberHistory')=numberHistory;
 }
 function _renderHistory() {
     var html = [];
